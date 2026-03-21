@@ -106,17 +106,6 @@ The first line treats `girl`, `woman`, and `lady` as duplicates of `1girl`. The 
 
 ---
 
-## Credits
-
-Based on [sd-webui-prompt-format](https://github.com/Haoming02/sd-webui-prompt-format) by [Haoming02](https://github.com/Haoming02). This fork includes bug fixes (see below).
-
-### Bug fixes in this fork
-
-- **`#fromExpression` missing global flag** — only the first `:3` or `> <` tag was restored; subsequent ones were left as placeholder tokens
-- **`#parseRegExp` using no-op `trimStart`/`trimEnd`** — user-provided `^`/`$` anchors in alias patterns were not stripped, causing double-anchored regexes that silently failed
-- **`fromNetwork` off-by-one loop** — loop started at `len` instead of `len - 1`, causing an unnecessary `undefined` lookup on each call
-- **Duplicate regex call** — trailing-comma strip was applied twice in a row
-
 ## License
 
 [MIT](LICENSE)
