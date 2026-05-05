@@ -58,6 +58,26 @@ class LeFormatter {
 	/** @type {Map<string, string>} */
 	static #networkDB = new Map();
 
+	/** @type {Map<string, string>} */
+	static #wildcardDB = new Map();
+
+	/** @param {string} input @returns {string} */
+	static #toWildcard(input) {
+		this.#wildcardDB.clear();
+		return input.replace(/__(.+?)__/g, (match) => {
+			const UID = `@WC${this.#wildcardDB.size}WILDCARD@`;
+			this.#wildcardDB.set(UID, match);
+			return UID;
+		});
+	}
+
+	/** @param {string} input @returns {string} */
+	static #fromWildcard(input) {
+		for (const [uid, val] of this.#wildcardDB)
+			input = input.replaceAll(uid, val);
+		return input;
+	}
+
 	/** @param {string} input @returns {string} */
 	static toNetwork(input) {
 		this.#networkDB.clear();
@@ -92,6 +112,9 @@ class LeFormatter {
 		// Substitute LoRAs
 		input = this.toNetwork(input);
 
+		// Protect Wildcards
+		input = this.#toWildcard(input);
+
 		// Remove Underscore
 		input = rmUnderscore ? this.#rmUnderscore(input) : input;
 
@@ -100,6 +123,9 @@ class LeFormatter {
 
 		// Restore LoRAs
 		input = this.fromNetwork(input);
+
+		// Restore Wildcards
+		input = this.#fromWildcard(input);
 
 		// Fix Commas inside Brackets
 		input = input
