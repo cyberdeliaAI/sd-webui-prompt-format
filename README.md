@@ -1,3 +1,7 @@
+> **⚠️ This repository is no longer maintained.**
+  > Development continues at [comfyui-cyberdelia-prompt-format](https://github.com/cyberdeliaAI/comfyui-cyberdelia-prompt-format) under the Cyberdelia AI Lab umbrella. Please install the new repo for the latest version and bugfixes.
+
+
 # Prompt Format
 
 A lightweight client-side prompt formatter for [AUTOMATIC1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and [Forge](https://github.com/lllyasviel/stable-diffusion-webui-forge) that automatically cleans and normalizes your prompts on every generation.
